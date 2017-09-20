@@ -1,0 +1,16 @@
+import requests
+import json
+
+regiao = input(" -FUSOS DO BRASIL- \n\n Digite: America/Noronha, Para: UTC -02:00 (Arquip�logos: Fernando de Noronha, S�o Pedro "
+               "e S�o Paulo, Atol das Rocas, Trindade e Martim Vaz)\n "
+               "Digite: America/Sao_Paulo, Para: UTC -03:00 (Distrito Federal; Regi�es Sul, Sudeste e Nordeste; Estados de Goi�s,"
+               " Tocantins, Par� e Amap�)\n Digite: America/Manaus, Para: UTC -04:00 (Mato Grosso, Mato Grosso do Sul, Rond�nia, "
+               "Roraima, e quase todo o Estado do Amazonas) \n Digite: America/Rio_Branco, Para: UTC -05:00 (Estado do Acre e "
+               "treze munic�pios no sudoeste do Estado do Amazonas) \n\n")
+
+requisicao = requests.get(
+    'http://api.timezonedb.com/v2/get-time-zone?key=N7PW7YJMK8T9&format=json&by=zone&zone='+regiao+'')
+
+horario = json.loads(requisicao.text)
+
+print('HORARIO: ', horario['formatted'])
